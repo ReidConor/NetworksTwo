@@ -90,10 +90,10 @@ ENV/
 
 
 #Latex
-.aux
-.xml
-.bcf
-.log
-.out
-.gz
-.toc
+*.aux
+*.xml
+*.bcf
+*.log
+*.out
+*.gz
+*.toc
