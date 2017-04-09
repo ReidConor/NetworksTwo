@@ -1,0 +1,8 @@
+Stanford Large Network Dataset Collection
+https://snap.stanford.edu/data/
+
+Network Repository
+http://networkrepository.com
+
+University of California - Network Data Repo
+http://networkdata.ics.uci.edu/index.php

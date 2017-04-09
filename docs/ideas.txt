@@ -1,0 +1,17 @@
+Simulating the expansion of populations over a graph-like map
+———
+http://spyhce.com/blog/python-networkx-library
+	Mid way down the page, this article gives the example of starting off with three populations that occupy an amount of nodes in a graph, and growing those populations in a competitive way (each trying to “take over” the entire map).
+	From what I’ve read of that article, it gives a good sense of how to carry that out in python but there’d be some work to do to make it happen.
+	I think this would fit into the scope of the assignment, especially the “…where there are competing messages, does one tend to take over the whole population, or do they settle into equilibrium, or is there an oscillation-type behaviour?” bit of his brief.
+	There’d be not actual data we’d import here I think. We’d just create an empty network of x nodes and y edges, populate three corners of it with our “populations” and just growing it out for a certain amount of iterations. After a set amount of iterations, we’d just look at the state of the map and compare across different amounts of iterations. 
+
+
+Something to do with the epidemic.py script he provided
+———
+Take his script and apply to a dataset, that we import from one of the sources in the data/ directory.
+Need to make sure this has enough novelty, and is sufficiently different to what he’s given us.
+	
+	Apply to some kind of twitter dataset to find how disease would spread?
+	
+	Something around recommendation networks? See how positive / negative product reviews influence other purchases? 
