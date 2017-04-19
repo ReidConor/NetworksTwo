@@ -12,7 +12,7 @@ countries, lats, lons = [], [], []
 pos = {}
 
 # Make this plot larger.
-plt.figure(figsize=(13,9))
+plt.figure(figsize=(15,10))
  
 with open(filename) as f:
     # Create a csv reader object.
@@ -42,6 +42,15 @@ for country, lon, lat, in zip(countries, lons, lats):
     pos[country] = (x,y)
     #m.plot(x, y, 'yo', markersize=msize)
     
-nx.draw_networkx(G,pos,node_size=50,node_color='yellow',labels = False)
+#Calculate Distances between countries and add edges
+i = 1
+for c1, lon1, lat1, in zip(countries, lons, lats):
+    for c2, lon2, lat2, in zip(countries[i:], lons[i:], lats[i:]):
+        dist = np.sqrt((lat2-lat1)**2 + (lon2-lon1)**2)
+        if dist < 10:
+            G.add_edge(c1, c2, weight = dist)
+    i = i + 1
+    
+nx.draw_networkx(G,pos,node_size=50,node_color='yellow',edge_color = 'red',with_labels = False)
 
 #plt.show()
