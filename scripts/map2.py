@@ -76,7 +76,8 @@ def infection_init(G):
     init = random.sample(G.nodes(), i)
     teams = ["red","green","blue"]
     for u in init:
-        G.node[u]["state"] = random.choice(teams)
+        G.node[u]["state"] = teams.pop() 
+        # random.choice(teams)
 
 def step(G):
     """Given a graph G, run one time-step."""
@@ -85,7 +86,6 @@ def step(G):
         for u2 in G.neighbors(u):
             G.node[u]["state"] = infection_update(d["state"], G.node[u2]["state"])
         # break
-
 
 def infection_update(s1, ss):
     """Update the state of node s1, given the states of its neighbours ss."""
