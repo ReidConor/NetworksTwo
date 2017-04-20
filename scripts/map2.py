@@ -3,15 +3,18 @@ import networkx as nx
 from mpl_toolkits.basemap import Basemap
 import matplotlib.pyplot as plt
 import numpy as np
+import random
 
 
 filename = 'Data.csv'
 
 G = nx.Graph()
-countries, lats, lons, pops = [], [], [], []
+countries, lats, lons, pops, color_map = [], [], [], [], []
 pos = {}
 
-# Make this plot larger.
+attack_colors = ['red','blue','green']
+
+# Make plot larger.
 plt.figure(figsize=(15,9))
  
 with open(filename) as f:
@@ -35,11 +38,22 @@ m.drawmapboundary()
 #m.drawmeridians(np.arange(0, 360, 30))
 #m.drawparallels(np.arange(-90, 90, 30))
 
-for country, lon, lat, in zip(countries, lons, lats):
+i = 0
+for country, lon, lat, pop in zip(countries, lons, lats, pops):
     G.add_node(country)
     x,y = m(lon, lat)
     pos[country] = (x,y)
-    #m.plot(x, y, 'yo', markersize=msize)
+
+    print(country)
+    state = 0
+    color = 'yellow'
+    if i < 3:
+        if pop * random.randint(0,1) > 10000:
+            state = 1
+            color = attack_colors[i]
+            i = i + 1
+    G.node[country]["state"] = state
+    color_map.append(color)
     
 #Calculate Distances between countries and add edges
 i = 1
@@ -48,13 +62,11 @@ for c1, lon1, lat1, pop1 in zip(countries, lons, lats, pops):
         dist = np.sqrt((lat2-lat1)**2 + (lon2-lon1)**2)
         maxPop = max(pop1, pop2)
         score  = np.power(maxPop,(1/4))/dist
-        print(dist)
-        print(maxPop)
-        print(score)
         if score > 1:
             G.add_edge(c1, c2, weight = dist)
     i = i + 1
     
-nx.draw_networkx(G,pos,node_size=50,node_color='yellow',edge_color = 'red',with_labels = False)
+nx.draw_networkx(G,pos,node_size=50,node_color = color_map, edge_color = 'purple', with_labels = False)
 
-#plt.show()
+
+
