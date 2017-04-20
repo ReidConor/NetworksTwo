@@ -75,8 +75,9 @@ def infection_init(G):
         G.node[u]["state"] = 0
     init = random.sample(G.nodes(), i)
     teams = ["red","green","blue"]
+    print(init)
     for u in init:
-        G.node[u]["state"] = teams.pop() 
+        G.node[u]["state"] = teams.pop()
         # random.choice(teams)
 
 def step(G):
@@ -114,7 +115,7 @@ if __name__ == "__main__":
     p = 0.5 # probability of acquiring infection from a single neighbour, per time-step
     i = 3 # number of nodes initially infected
     # td = 10 # td time-steps after infection, the individual dies
-    nsteps = 2 # how many time-steps to run
+    nsteps = 10 # how many time-steps to run
 
     infection_init(G)
 
