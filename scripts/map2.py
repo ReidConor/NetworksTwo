@@ -53,6 +53,7 @@ def genGraph():
             if dist < 10:
                 G.add_edge(c1, c2, weight = dist)
         i = i + 1
+    G.add_edge("United States","China")
     return G, pos
 
 def plotGraph(Graph, pos):
@@ -72,7 +73,7 @@ def plotGraph(Graph, pos):
 def infection_init(G):
     """Make a graph with some infected nodes."""
     for u in G.nodes():
-        G.node[u]["state"] = 0
+        G.node[u]["state"] = "white"
     init = random.sample(G.nodes(), i)
     teams = ["red","green","blue"]
     print(init)
@@ -115,7 +116,7 @@ if __name__ == "__main__":
     p = 0.5 # probability of acquiring infection from a single neighbour, per time-step
     i = 3 # number of nodes initially infected
     # td = 10 # td time-steps after infection, the individual dies
-    nsteps = 10 # how many time-steps to run
+    nsteps = 200 # how many time-steps to run
 
     infection_init(G)
 
